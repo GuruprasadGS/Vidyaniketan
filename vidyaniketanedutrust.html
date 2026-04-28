@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vidyaniketan Education Trust – Afzalpur</title>
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy:    #0d1b2a;
+      --deep:    #112240;
+      --gold:    #c9973b;
+      --gold-lt: #e8b86d;
+      --cream:   #fdf8f0;
+      --light:   #f4ede0;
+      --text:    #2c2c2c;
+      --muted:   #6b7280;
+      --white:   #ffffff;
+      --radius:  12px;
+      --shadow:  0 8px 40px rgba(13,27,42,.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+    .serif-italic { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+    /* ── TOPBAR ── */
+    #topbar {
+      background: var(--navy);
+      color: rgba(255,255,255,.75);
+      font-size: .82rem;
+      letter-spacing: .04em;
+      padding: 7px 0;
+    }
+    #topbar a { color: var(--gold-lt); text-decoration: none; }
+    #topbar a:hover { color: var(--white); }
+    #topbar .sep { margin: 0 12px; opacity: .4; }
+
+    /* ── NAVBAR ── */
+    #mainNav {
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 3px solid var(--gold);
+      transition: box-shadow .3s;
+      z-index: 1050;
+    }
+    #mainNav.scrolled { box-shadow: 0 4px 24px rgba(13,27,42,.15); }
+
+    .navbar-brand .brand-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--navy), var(--deep));
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .brand-text .school-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--navy); line-height: 1.2;
+    }
+    .brand-text .school-sub {
+      font-size: .7rem; color: var(--muted);
+      letter-spacing: .05em;
+    }
+
+    .nav-link {
+      font-size: .88rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--navy) !important;
+      padding: .5rem 1rem !important; position: relative;
+      transition: color .2s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 1rem; right: 1rem;
+      height: 2px; background: var(--gold);
+      transform: scaleX(0); transition: transform .25s;
+    }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+    .nav-link:hover { color: var(--gold) !important; }
+
+    .navbar-toggler { border: 2px solid var(--gold); border-radius: 8px; padding: 6px 10px; }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23c9973b' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://lh3.googleusercontent.com/p/AF1QipPkTBUcG9X5b5yC61h6hg9kUQ-i0tp2_SS8Pw-L=s773-k-no') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, rgba(13,27,42,.88) 50%, rgba(13,27,42,.55));
+    }
+    .hero-deco {
+      position: absolute; top: 0; right: 0; bottom: 0; width: 40%;
+      background: linear-gradient(180deg, var(--gold) 0%, transparent 60%);
+      opacity: .07; clip-path: polygon(30% 0,100% 0,100% 100%,0 100%);
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy); font-size: .75rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: var(--white); line-height: 1.15; margin-bottom: .5rem;
+    }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      color: var(--gold-lt); margin-bottom: 2rem;
+    }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2.5rem; }
+    .hero-stat-item { text-align: center; }
+    .hero-stat-item .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--gold); line-height: 1;
+    }
+    .hero-stat-item .lbl {
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.6); margin-top: 4px;
+    }
+    .hero-divider { width: 60px; height: 3px; background: var(--gold); margin: 1.5rem 0; }
+
+    .btn-gold {
+      background: var(--gold); color: var(--navy);
+      font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      font-size: .85rem; border-radius: 50px; padding: .75rem 2rem; border: none;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,151,59,.4); color: var(--navy); }
+    .btn-outline-gold {
+      border: 2px solid var(--gold); color: var(--gold);
+      font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      font-size: .85rem; border-radius: 50px; padding: .7rem 2rem;
+      background: transparent; transition: all .2s;
+    }
+    .btn-outline-gold:hover { background: var(--gold); color: var(--navy); }
+
+    /* hero scroll indicator */
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      z-index: 2; text-align: center;
+    }
+    .scroll-hint span { display: block; width: 24px; height: 38px; border: 2px solid var(--gold); border-radius: 12px; margin: 0 auto 6px; position: relative; }
+    .scroll-hint span::before {
+      content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 8px; background: var(--gold); border-radius: 2px;
+      animation: scrollDot 1.6s infinite;
+    }
+    @keyframes scrollDot { 0%,100%{top:6px;opacity:1} 50%{top:18px;opacity:.3} }
+    .scroll-hint p { font-size: .65rem; letter-spacing: .15em; color: rgba(255,255,255,.5); text-transform: uppercase; }
+
+    /* ── SECTION SHARED ── */
+    .section-tag {
+      font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .5rem;
+    }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--navy); }
+    .section-line {
+      display: flex; align-items: center; gap: 10px; margin: 1rem 0 2rem;
+    }
+    .section-line::before, .section-line::after { content: ''; flex: 1; height: 1px; background: var(--gold); opacity: .35; }
+    .section-line .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-img-stack { position: relative; }
+    .about-img-main {
+      border-radius: var(--radius); width: 100%;
+      box-shadow: var(--shadow); aspect-ratio: 4/3; object-fit: cover;
+    }
+    .about-img-accent {
+      position: absolute; bottom: -24px; right: -24px;
+      width: 180px; border-radius: var(--radius);
+      border: 4px solid var(--white); box-shadow: var(--shadow);
+      object-fit: cover; aspect-ratio: 4/3;
+    }
+    .about-feature { display: flex; gap: 14px; margin-bottom: 1.25rem; align-items: flex-start; }
+    .about-feature .icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--navy), var(--deep));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--gold); flex-shrink: 0; margin-top: 2px;
+    }
+    .about-feature h6 { font-family: 'Playfair Display',serif; font-size: 1rem; color: var(--navy); margin-bottom: 3px; }
+    .about-feature p { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── ACADEMICS ── */
+    #academics { background: var(--cream); }
+    .class-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(201,151,59,.2);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+      overflow: hidden;
+      height: 100%;
+    }
+    .class-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: var(--gold); }
+    .class-card-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--deep) 100%);
+      padding: 1.5rem; position: relative; overflow: hidden;
+    }
+    .class-card-header::after {
+      content: ''; position: absolute; top: -30px; right: -30px;
+      width: 100px; height: 100px; border-radius: 50%;
+      background: rgba(201,151,59,.15);
+    }
+    .class-card-header .grade-badge {
+      background: var(--gold); color: var(--navy);
+      font-size: .65rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+      display: inline-block; margin-bottom: .6rem;
+    }
+    .class-card-header h4 { color: var(--white); font-size: 1.3rem; margin: 0; }
+    .class-card-header p { color: rgba(255,255,255,.65); font-size: .82rem; margin-top: 3px; }
+    .class-card-body { padding: 1.5rem; }
+    .subject-pill {
+      display: inline-block; font-size: .73rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 20px; margin: 3px 2px;
+      background: var(--light); color: var(--navy);
+      border: 1px solid rgba(201,151,59,.25);
+    }
+    .class-icon {
+      font-size: 2rem; color: var(--gold); margin-bottom: .75rem; display: block;
+    }
+
+    /* Class tabs */
+    .class-tabs { border-bottom: 2px solid rgba(201,151,59,.2); flex-wrap: nowrap; overflow-x: auto; }
+    .class-tabs .nav-link {
+      font-size: .82rem; white-space: nowrap;
+      color: var(--muted) !important; border: none !important; border-radius: 0 !important;
+      padding: .7rem 1.2rem !important; letter-spacing: .05em;
+    }
+    .class-tabs .nav-link::after { display: none; }
+    .class-tabs .nav-link.active { color: var(--gold) !important; border-bottom: 3px solid var(--gold) !important; }
+
+    /* ── FACILITIES ── */
+    #facilities { background: var(--navy); }
+    #facilities .section-title { color: var(--white); }
+    #facilities .section-tag { color: var(--gold-lt); }
+    .facility-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(201,151,59,.2);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem; text-align: center;
+      transition: background .3s, border-color .3s, transform .3s;
+      height: 100%;
+    }
+    .facility-card:hover {
+      background: rgba(201,151,59,.1); border-color: var(--gold);
+      transform: translateY(-6px);
+    }
+    .facility-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(201,151,59,.25), rgba(201,151,59,.05));
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: var(--gold);
+      margin: 0 auto 1.25rem;
+    }
+    .facility-card h5 { color: var(--white); font-size: 1.1rem; margin-bottom: .6rem; }
+    .facility-card p { color: rgba(255,255,255,.6); font-size: .88rem; line-height: 1.7; }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--cream); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+    .gallery-item {
+      border-radius: var(--radius); overflow: hidden;
+      position: relative; cursor: pointer;
+    }
+    .gallery-item:first-child { grid-row: 1 / 3; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s;
+      display: block;
+    }
+    .gallery-item:first-child img { min-height: 420px; }
+    .gallery-item:not(:first-child) img { height: 200px; }
+    .gallery-item:hover img { transform: scale(1.07); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,27,42,.7) 0%, transparent 60%);
+      opacity: 0; transition: opacity .3s;
+      display: flex; align-items: flex-end; padding: 1rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span { color: var(--white); font-size: .8rem; letter-spacing: .08em; }
+
+    /* ── CTA ── */
+    #cta {
+      background: linear-gradient(135deg, var(--gold) 0%, #b8862d 100%);
+      position: relative; overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(255,255,255,.08);
+    }
+    #cta::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(13,27,42,.08);
+    }
+    #cta .container { position: relative; z-index: 1; }
+    #cta h2 { color: var(--navy); }
+    #cta p { color: rgba(13,27,42,.75); }
+    .btn-navy {
+      background: var(--navy); color: var(--white);
+      font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      font-size: .85rem; border-radius: 50px; padding: .75rem 2rem;
+      border: none; transition: background .2s, transform .2s;
+    }
+    .btn-navy:hover { background: var(--deep); transform: translateY(-2px); color: var(--white); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-card {
+      background: var(--cream);
+      border: 1px solid rgba(201,151,59,.2);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      height: 100%;
+      transition: box-shadow .3s;
+    }
+    .contact-card:hover { box-shadow: var(--shadow); }
+    .contact-icon {
+      width: 54px; height: 54px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--deep));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: var(--gold); margin-bottom: 1rem;
+    }
+    .contact-card h6 { font-family: 'Playfair Display',serif; color: var(--navy); font-size: 1.05rem; margin-bottom: .4rem; }
+    .contact-card p, .contact-card a { font-size: .9rem; color: var(--muted); text-decoration: none; }
+    .contact-card a:hover { color: var(--gold); }
+
+    .map-container { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .map-container iframe { display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.7);
+      padding: 4rem 0 0;
+    }
+    footer .footer-brand { margin-bottom: 1.25rem; }
+    footer .footer-brand .logo-circle {
+      width: 54px; height: 54px; border-radius: 50%;
+      background: var(--gold); display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); font-weight: 700;
+    }
+    footer h6 { color: var(--gold); font-size: .8rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem; }
+    footer ul { list-style: none; padding: 0; }
+    footer ul li { margin-bottom: .5rem; }
+    footer ul li a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color .2s; }
+    footer ul li a:hover { color: var(--gold); }
+    footer p { font-size: .88rem; line-height: 1.8; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 1.25rem 0; margin-top: 3rem;
+      font-size: .78rem; color: rgba(255,255,255,.4);
+    }
+    .footer-bottom a { color: var(--gold-lt); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.delay-1 { transition-delay: .1s; }
+    .fade-up.delay-2 { transition-delay: .2s; }
+    .fade-up.delay-3 { transition-delay: .3s; }
+    .fade-up.delay-4 { transition-delay: .4s; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .about-img-accent { display: none; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:first-child { grid-row: auto; }
+      .gallery-item:first-child img { min-height: 260px; }
+      .hero-stats { gap: 1.25rem; }
+      #topbar .d-none-sm { display: none !important; }
+    }
+
+    /* ── LIGHTBOX simple ── */
+    #lightbox {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.92); align-items: center; justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 92vw; max-height: 85vh; border-radius: 8px; }
+    #lightbox .lb-close {
+      position: absolute; top: 20px; right: 24px;
+      font-size: 2rem; color: var(--white); cursor: pointer; line-height: 1;
+    }
+
+    /* syllbus ribbon */
+    .syllabus-ribbon {
+      background: rgba(201,151,59,.15); border: 1px solid rgba(201,151,59,.3);
+      border-radius: 8px; padding: .5rem 1rem;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .8rem; color: var(--navy); margin-bottom: 2rem;
+    }
+    .syllabus-ribbon i { color: var(--gold); font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <div class="d-flex flex-wrap align-items-center gap-1">
+      <i class="bi bi-geo-alt-fill me-1"></i>Dudhani Road, Afzalpur, Karnataka 585301
+      <span class="sep d-none d-md-inline">|</span>
+      <span class="d-none d-md-inline"><i class="bi bi-clock me-1"></i>Mon–Sat: 9 AM – 5 PM &nbsp;·&nbsp; Sunday Closed</span>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <a href="tel:9448650834"><i class="bi bi-telephone-fill me-1"></i>+91 94486 50834</a>
+      <a href="tel:9886009301"><i class="bi bi-telephone-fill me-1"></i>+91 98860 09301</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="navbar navbar-expand-lg sticky-top py-2">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-3" href="#hero">
+      <div class="brand-icon">V</div>
+      <div class="brand-text">
+        <div class="school-name">Vidyaniketan Education Trust</div>
+        <div class="school-sub">English Medium · Afzalpur · Karnataka State Syllabus</div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#academics">Academics</a></li>
+        <li class="nav-item"><a class="nav-link" href="#facilities">Facilities</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-deco"></div>
+
+  <div class="container hero-content py-5">
+    <div class="row align-items-center min-vh-100 py-5">
+      <div class="col-lg-7">
+        <div class="hero-badge">
+          <i class="bi bi-award-fill me-1"></i>Karnataka State Syllabus · Est. Afzalpur
+        </div>
+        <h1 class="hero-title">
+          Vidyaniketan<br/>
+          <span style="color:var(--gold)">Education Trust</span>
+        </h1>
+        <p class="hero-sub">English Medium Higher Primary &amp; High School</p>
+        <div class="hero-divider"></div>
+        <p style="color:rgba(255,255,255,.75); font-size:.95rem; max-width:520px; line-height:1.8;">
+          Nurturing young minds from <strong style="color:var(--gold-lt)">LKG to 10th Standard</strong> with a blend of academic excellence, character building, and holistic development in the heart of Afzalpur.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="#academics" class="btn btn-gold">
+            <i class="bi bi-mortarboard-fill me-2"></i>Explore Academics
+          </a>
+          <a href="#contact" class="btn btn-outline-gold">
+            <i class="bi bi-telephone me-2"></i>Contact Us
+          </a>
+        </div>
+
+        <div class="hero-stats mt-5">
+          <div class="hero-stat-item">
+            <div class="num">LKG</div>
+            <div class="lbl">to 10th Std</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="num">500+</div>
+            <div class="lbl">Students</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="num">25+</div>
+            <div class="lbl">Years</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="num">State</div>
+            <div class="lbl">Syllabus</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span></span>
+    <p>Scroll</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-6 py-md-7" style="padding: 5rem 0;">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 fade-up">
+        <div class="about-img-stack pe-4">
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGB00hY6HOTIfFW-Np1NCz2L6meo52B4jjVXvMmZlbYTxYxWd8Hfzf72Dome1euJFNEX4VcEc0Kvt-EFAAoY9N9QR2edqyBysVycR_fBkpJj9vxUqkRPygy-TBszD3Fr2FfZiVpJg4h4iP=s899-k-no"
+               class="about-img-main" alt="Vidyaniketan School" />
+          <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEJN8tUUf1YZDABXoo5Bx1XUPVvXXLHuaK6XsRtx76BZP0WY05NQPmmgqGRQG-z4ERnx23yO5cr1l29IqCLpEfkxt3YpS7MRlmA5CbAQfkirIOkBGi7IquoUHplm7InUYGMZSrM5Q=w222-h100-k-no"
+               class="about-img-accent d-none d-md-block" alt="School campus" />
+        </div>
+      </div>
+      <div class="col-lg-7 fade-up delay-2">
+        <p class="section-tag"><i class="bi bi-star-fill me-1"></i>About Our School</p>
+        <h2 class="section-title mb-0">Nurturing Young Minds<br/><em>Since Decades</em></h2>
+        <div class="section-line"><div class="dot"></div></div>
+
+        <div class="syllabus-ribbon">
+          <i class="bi bi-patch-check-fill"></i>
+          <span><strong>Karnataka State Syllabus</strong> — Affiliated School</span>
+        </div>
+
+        <p class="text-muted mb-4" style="line-height:1.9;">
+          Vidyaniketan Education Trust is committed to providing quality education that nurtures the intellectual, emotional, and social growth of every child. Located in the heart of Afzalpur, Kalaburagi, we have been serving the community with dedication and excellence — offering English Medium education from LKG through 10th Standard.
+        </p>
+
+        <div class="about-feature">
+          <div class="icon"><i class="bi bi-book-half"></i></div>
+          <div>
+            <h6>Academic Excellence</h6>
+            <p>Following the Karnataka State Syllabus, our curriculum ensures students are well-prepared for board examinations while developing critical thinking and a lifelong love of learning.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="icon"><i class="bi bi-people-fill"></i></div>
+          <div>
+            <h6>Holistic Development</h6>
+            <p>Beyond academics, we foster character, creativity, and confidence through sports, cultural activities, and educational excursions across Karnataka.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="icon"><i class="bi bi-geo-alt-fill"></i></div>
+          <div>
+            <h6>Community Rooted</h6>
+            <p>Proudly serving the Afzalpur community in Kalaburagi district, we empower local children with world-class English medium education close to home.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMICS -->
+<section id="academics" style="padding: 5rem 0;">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-tag"><i class="bi bi-mortarboard-fill me-1"></i>Academics</p>
+      <h2 class="section-title">Our Academic Programme</h2>
+      <div class="section-line justify-content-center"><div class="dot"></div></div>
+      <p class="text-muted mx-auto" style="max-width:580px; line-height:1.8;">
+        Comprehensive education from <strong>LKG to 10th Standard</strong> under the <strong>Karnataka State Syllabus</strong>, designed for holistic growth at every stage.
+      </p>
+    </div>
+
+    <!-- Tab navigation -->
+    <ul class="nav class-tabs mb-4 fade-up delay-1" id="classTabs">
+      <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tabPrePrimary">Pre-Primary</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tabPrimary">Primary (1–5)</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tabMiddle">Middle (6–8)</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tabHigh">High School (9–10)</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+      <!-- Pre-Primary -->
+      <div class="tab-pane fade show active" id="tabPrePrimary">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3 fade-up delay-1">
+            <div class="class-card">
+              <div class="class-card-header">
+                <span class="grade-badge">Pre-Primary</span>
+                <h4>LKG</h4>
+                <p>Lower Kindergarten</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-emoji-smile class-icon"></i>
+                <p class="text-muted small mb-3">A joyful start where children explore, play, and grow through activity-based learning.</p>
+                <div>
+                  <span class="subject-pill">English</span>
+                  <span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">EVS</span>
+                  <span class="subject-pill">Art &amp; Craft</span>
+                  <span class="subject-pill">Music &amp; Dance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 fade-up delay-2">
+            <div class="class-card">
+              <div class="class-card-header">
+                <span class="grade-badge">Pre-Primary</span>
+                <h4>UKG</h4>
+                <p>Upper Kindergarten</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-stars class-icon"></i>
+                <p class="text-muted small mb-3">Building readiness for formal schooling with phonics, numbers, and social skills.</p>
+                <div>
+                  <span class="subject-pill">English</span>
+                  <span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">EVS</span>
+                  <span class="subject-pill">Art &amp; Craft</span>
+                  <span class="subject-pill">Phonics</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 fade-up delay-3">
+            <div class="class-card h-100">
+              <div class="class-card-header" style="background:linear-gradient(135deg,#1a3a5c,#0d2137);">
+                <span class="grade-badge">Highlights</span>
+                <h4>Pre-Primary Philosophy</h4>
+                <p>Play-based · Nurturing · Creative</p>
+              </div>
+              <div class="class-card-body">
+                <div class="row g-3 mt-1">
+                  <div class="col-6 d-flex gap-2 align-items-start">
+                    <i class="bi bi-palette-fill text-warning mt-1"></i>
+                    <div><strong style="font-size:.9rem">Creative Arts</strong><br/><span class="text-muted small">Drawing, craft & music</span></div>
+                  </div>
+                  <div class="col-6 d-flex gap-2 align-items-start">
+                    <i class="bi bi-activity text-warning mt-1"></i>
+                    <div><strong style="font-size:.9rem">Activity Learning</strong><br/><span class="text-muted small">Hands-on exploration</span></div>
+                  </div>
+                  <div class="col-6 d-flex gap-2 align-items-start">
+                    <i class="bi bi-translate text-warning mt-1"></i>
+                    <div><strong style="font-size:.9rem">Bilingual Exposure</strong><br/><span class="text-muted small">English &amp; Kannada</span></div>
+                  </div>
+                  <div class="col-6 d-flex gap-2 align-items-start">
+                    <i class="bi bi-shield-heart-fill text-warning mt-1"></i>
+                    <div><strong style="font-size:.9rem">Safe Environment</strong><br/><span class="text-muted small">Child-friendly campus</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary -->
+      <div class="tab-pane fade" id="tabPrimary">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 fade-up delay-1">
+            <div class="class-card">
+              <div class="class-card-header">
+                <span class="grade-badge">Primary</span>
+                <h4>1st &amp; 2nd Standard</h4>
+                <p>Foundation Years</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-pencil-fill class-icon"></i>
+                <p class="text-muted small mb-3">Laying strong literacy and numeracy foundations with engaging, activity-led teaching.</p>
+                <div>
+                  <span class="subject-pill">English</span>
+                  <span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Hindi</span>
+                  <span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">EVS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 fade-up delay-2">
+            <div class="class-card">
+              <div class="class-card-header">
+                <span class="grade-badge">Primary</span>
+                <h4>3rd &amp; 4th Standard</h4>
+                <p>Expanding Horizons</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-journal-bookmark class-icon"></i>
+                <p class="text-muted small mb-3">Broadening subjects and deepening comprehension with project-based assignments.</p>
+                <div>
+                  <span class="subject-pill">English</span>
+                  <span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Hindi</span>
+                  <span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">Science</span>
+                  <span class="subject-pill">Social Studies</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 fade-up delay-3">
+            <div class="class-card">
+              <div class="class-card-header">
+                <span class="grade-badge">Primary</span>
+                <h4>5th Standard</h4>
+                <p>Transition Year</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-laptop class-icon"></i>
+                <p class="text-muted small mb-3">Preparing students for middle school with introduction to computer science concepts.</p>
+                <div>
+                  <span class="subject-pill">English</span>
+                  <span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Hindi</span>
+                  <span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">Science</span>
+                  <span class="subject-pill">Social Studies</span>
+                  <span class="subject-pill">Computer Science</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle -->
+      <div class="tab-pane fade" id="tabMiddle">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 fade-up delay-1">
+            <div class="class-card">
+              <div class="class-card-header">
+                <span class="grade-badge">Middle School</span>
+                <h4>6th Standard</h4>
+                <p>Analytical Thinking</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-diagram-3-fill class-icon"></i>
+                <p class="text-muted small mb-3">Introduction to structured Science, Social Science and deeper language skills.</p>
+                <div>
+                  <span class="subject-pill">English</span><span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Hindi</span><span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">Science</span><span class="subject-pill">Social Science</span>
+                  <span class="subject-pill">Computer Science</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 fade-up delay-2">
+            <div class="class-card">
+              <div class="class-card-header">
+                <span class="grade-badge">Middle School</span>
+                <h4>7th Standard</h4>
+                <p>Skill Building</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-gear-wide-connected class-icon"></i>
+                <p class="text-muted small mb-3">Strengthening reasoning and comprehension with concept-based, exam-oriented teaching.</p>
+                <div>
+                  <span class="subject-pill">English</span><span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Hindi</span><span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">Science</span><span class="subject-pill">Social Science</span>
+                  <span class="subject-pill">Physical Education</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 fade-up delay-3">
+            <div class="class-card">
+              <div class="class-card-header">
+                <span class="grade-badge">Middle School</span>
+                <h4>8th Standard</h4>
+                <p>High-School Ready</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-trophy-fill class-icon"></i>
+                <p class="text-muted small mb-3">Bridging the gap to high school with revision-rich, comprehensive academic preparation.</p>
+                <div>
+                  <span class="subject-pill">English</span><span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Hindi</span><span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">Science</span><span class="subject-pill">Social Science</span>
+                  <span class="subject-pill">Computer Science</span><span class="subject-pill">Physical Education</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- High School -->
+      <div class="tab-pane fade" id="tabHigh">
+        <div class="row g-4">
+          <div class="col-md-6 fade-up delay-1">
+            <div class="class-card">
+              <div class="class-card-header" style="background:linear-gradient(135deg,#7b3f00,#5a2d00);">
+                <span class="grade-badge">High School</span>
+                <h4>9th Standard</h4>
+                <p>Board Examination Preparation</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-bar-chart-line-fill class-icon"></i>
+                <p class="text-muted small mb-3">Intensive preparation for SSLC board examinations with regular assessments, model papers, and expert guidance.</p>
+                <div>
+                  <span class="subject-pill">English</span><span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Hindi</span><span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">Science</span><span class="subject-pill">Social Science</span>
+                  <span class="subject-pill">Computer Science</span><span class="subject-pill">Physical Education</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 fade-up delay-2">
+            <div class="class-card">
+              <div class="class-card-header" style="background:linear-gradient(135deg,#7b3f00,#5a2d00);">
+                <span class="grade-badge">High School</span>
+                <h4>10th Standard</h4>
+                <p>SSLC — State Board</p>
+              </div>
+              <div class="class-card-body">
+                <i class="bi bi-award-fill class-icon"></i>
+                <p class="text-muted small mb-3">Final year of schooling with focused SSLC coaching, revision sessions, and holistic student support for board success.</p>
+                <div>
+                  <span class="subject-pill">English</span><span class="subject-pill">Kannada</span>
+                  <span class="subject-pill">Hindi</span><span class="subject-pill">Mathematics</span>
+                  <span class="subject-pill">Science</span><span class="subject-pill">Social Science</span>
+                  <span class="subject-pill">Computer Science</span><span class="subject-pill">Physical Education</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 fade-up delay-3">
+            <div class="alert d-flex align-items-center gap-3" style="background:rgba(201,151,59,.12);border:1px solid rgba(201,151,59,.3);border-radius:var(--radius);">
+              <i class="bi bi-patch-check-fill" style="font-size:1.5rem;color:var(--gold);flex-shrink:0;"></i>
+              <div>
+                <strong style="color:var(--navy)">Karnataka State Syllabus (KSEEB)</strong><br/>
+                <span class="text-muted small">Our High School follows the Karnataka Secondary Education Examination Board curriculum, ensuring students are fully prepared for SSLC board examinations and higher education.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities" style="padding: 5rem 0;">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-tag"><i class="bi bi-buildings me-1"></i>Our Facilities</p>
+      <h2 class="section-title" style="color:var(--white);">Modern Infrastructure<br/><em style="color:var(--gold-lt)">for Better Learning</em></h2>
+      <div class="section-line justify-content-center" style="--gold:.5"><div class="dot"></div></div>
+      <p style="color:rgba(255,255,255,.6); max-width:520px; margin:0 auto; line-height:1.8;">
+        Every facility at Vidyaniketan is thoughtfully designed to foster curiosity, skill development, and well-rounded growth.
+      </p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3 fade-up delay-1">
+        <div class="facility-card">
+          <div class="facility-icon"><i class="bi bi-pc-display"></i></div>
+          <h5>Computer Lab</h5>
+          <p>State-of-the-art computers with modern software, helping students build essential digital literacy skills for today's world.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 fade-up delay-2">
+        <div class="facility-card">
+          <div class="facility-icon"><i class="bi bi-eyedropper"></i></div>
+          <h5>Science Lab</h5>
+          <p>A well-equipped laboratory where students conduct experiments and explore scientific concepts through exciting hands-on learning.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 fade-up delay-3">
+        <div class="facility-card">
+          <div class="facility-icon"><i class="bi bi-trophy-fill"></i></div>
+          <h5>Sports Club</h5>
+          <p>Comprehensive indoor and outdoor sports programs promoting physical fitness, teamwork, and sportsmanship among all students.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 fade-up delay-4">
+        <div class="facility-card">
+          <div class="facility-icon"><i class="bi bi-bus-front-fill"></i></div>
+          <h5>Educational Outings</h5>
+          <p>Regular picnics and excursions across Karnataka, giving students real-world experiential learning beyond the classroom walls.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="padding: 5rem 0;">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-tag"><i class="bi bi-images me-1"></i>Gallery</p>
+      <h2 class="section-title">Campus Glimpses</h2>
+      <div class="section-line justify-content-center"><div class="dot"></div></div>
+    </div>
+    <div class="gallery-grid fade-up delay-1">
+      <div class="gallery-item" data-src="https://lh3.googleusercontent.com/p/AF1QipPkTBUcG9X5b5yC61h6hg9kUQ-i0tp2_SS8Pw-L=s773-k-no">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipPkTBUcG9X5b5yC61h6hg9kUQ-i0tp2_SS8Pw-L=s773-k-no" alt="Vidyaniketan Main Building" />
+        <div class="gallery-overlay"><span><i class="bi bi-zoom-in me-1"></i>School Building</span></div>
+      </div>
+      <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGGFRJq0WKmwl017WQUAUvN26jXhYNXm_QccN8wf4l5jG6uecrCl2tPLJBFtaLh1fsBdv6D0Dkl87vSx7j_SfzUw76f-VUj7F-Kvzk4px-gkS7p96_5RxhxGTiX6aHdTOCbAKcRw=w203-h135-k-no">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGGFRJq0WKmwl017WQUAUvN26jXhYNXm_QccN8wf4l5jG6uecrCl2tPLJBFtaLh1fsBdv6D0Dkl87vSx7j_SfzUw76f-VUj7F-Kvzk4px-gkS7p96_5RxhxGTiX6aHdTOCbAKcRw=w203-h135-k-no" alt="Campus" />
+        <div class="gallery-overlay"><span><i class="bi bi-zoom-in me-1"></i>Campus View</span></div>
+      </div>
+      <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGB00hY6HOTIfFW-Np1NCz2L6meo52B4jjVXvMmZlbYTxYxWd8Hfzf72Dome1euJFNEX4VcEc0Kvt-EFAAoY9N9QR2edqyBysVycR_fBkpJj9vxUqkRPygy-TBszD3Fr2FfZiVpJg4h4iP=s899-k-no">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGB00hY6HOTIfFW-Np1NCz2L6meo52B4jjVXvMmZlbYTxYxWd8Hfzf72Dome1euJFNEX4VcEc0Kvt-EFAAoY9N9QR2edqyBysVycR_fBkpJj9vxUqkRPygy-TBszD3Fr2FfZiVpJg4h4iP=s899-k-no" alt="School Activities" />
+        <div class="gallery-overlay"><span><i class="bi bi-zoom-in me-1"></i>School Life</span></div>
+      </div>
+      <div class="gallery-item" data-src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEJN8tUUf1YZDABXoo5Bx1XUPVvXXLHuaK6XsRtx76BZP0WY05NQPmmgqGRQG-z4ERnx23yO5cr1l29IqCLpEfkxt3YpS7MRlmA5CbAQfkirIOkBGi7IquoUHplm7InUYGMZSrM5Q=w222-h100-k-no">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEJN8tUUf1YZDABXoo5Bx1XUPVvXXLHuaK6XsRtx76BZP0WY05NQPmmgqGRQG-z4ERnx23yO5cr1l29IqCLpEfkxt3YpS7MRlmA5CbAQfkirIOkBGi7IquoUHplm7InUYGMZSrM5Q=w222-h100-k-no" alt="School Grounds" />
+        <div class="gallery-overlay"><span><i class="bi bi-zoom-in me-1"></i>Grounds</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <span class="lb-close" id="lbClose">&times;</span>
+  <img id="lbImg" src="" alt="Gallery" />
+</div>
+
+<!-- CTA -->
+<section id="cta" style="padding: 4.5rem 0;">
+  <div class="container text-center">
+    <p class="section-tag" style="color:var(--navy);"><i class="bi bi-telephone-fill me-1"></i>Get in Touch</p>
+    <h2 class="section-title mb-3" style="color:var(--navy);">Interested in Joining<br/><em>Vidyaniketan?</em></h2>
+    <p class="mb-4" style="color:rgba(13,27,42,.75); max-width:500px; margin:0 auto 2rem; line-height:1.8;">
+      Call us during office hours or visit our campus on Dudhani Road, Afzalpur. We welcome you to explore our school.
+    </p>
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+      <a href="tel:9448650834" class="btn btn-navy">
+        <i class="bi bi-telephone-fill me-2"></i>+91 94486 50834
+      </a>
+      <a href="tel:9886009301" class="btn btn-navy">
+        <i class="bi bi-telephone-fill me-2"></i>+91 98860 09301
+      </a>
+      <a href="https://maps.app.goo.gl/VFfqiYkkWnwhfjKd8" target="_blank" class="btn" style="background:rgba(13,27,42,.12);color:var(--navy);font-weight:700;border-radius:50px;padding:.75rem 2rem;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;">
+        <i class="bi bi-map-fill me-2"></i>View on Map
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding: 5rem 0;">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <p class="section-tag"><i class="bi bi-envelope-fill me-1"></i>Contact Us</p>
+      <h2 class="section-title">Find &amp; Reach Us</h2>
+      <div class="section-line justify-content-center"><div class="dot"></div></div>
+    </div>
+    <div class="row g-4 mb-5">
+      <div class="col-sm-6 col-lg-3 fade-up delay-1">
+        <div class="contact-card text-center">
+          <div class="contact-icon mx-auto"><i class="bi bi-geo-alt-fill"></i></div>
+          <h6>Address</h6>
+          <p>Dudhani Road, Afzalpur,<br/>Afzalpur Rural,<br/>Karnataka – 585301</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 fade-up delay-2">
+        <div class="contact-card text-center">
+          <div class="contact-icon mx-auto"><i class="bi bi-telephone-fill"></i></div>
+          <h6>Phone</h6>
+          <a href="tel:9448650834" class="d-block mb-1" style="color:var(--navy);font-weight:600;">9448650834</a>
+          <a href="tel:9886009301" class="d-block" style="color:var(--navy);font-weight:600;">98860 09301</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 fade-up delay-3">
+        <div class="contact-card text-center">
+          <div class="contact-icon mx-auto"><i class="bi bi-clock-fill"></i></div>
+          <h6>Office Hours</h6>
+          <p>Monday – Saturday<br/><strong style="color:var(--navy)">9:00 AM – 5:00 PM</strong><br/><span style="color:#e53e3e;font-size:.85rem;"><i class="bi bi-x-circle-fill me-1"></i>Sunday Closed</span></p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 fade-up delay-4">
+        <div class="contact-card text-center">
+          <div class="contact-icon mx-auto"><i class="bi bi-map-fill"></i></div>
+          <h6>District</h6>
+          <p>Kalaburagi District<br/>Karnataka, India</p>
+          <a href="https://maps.app.goo.gl/VFfqiYkkWnwhfjKd8" target="_blank" class="btn btn-gold btn-sm mt-2" style="border-radius:20px;font-size:.78rem;">
+            <i class="bi bi-pin-map-fill me-1"></i>Get Directions
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div class="map-container fade-up">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.1!2d76.3426!3d17.2845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDE3JzA0LjIiTiA3NsKwMjAnMzMuNCJF!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+        width="100%" height="380" style="border:0;" allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade" title="Vidyaniketan Location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand d-flex align-items-center gap-3 mb-3">
+          <div class="logo-circle">V</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;color:var(--white);font-size:1rem;font-weight:700;line-height:1.2;">Vidyaniketan Education Trust</div>
+            <div style="font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.05em;">English Medium · Karnataka State Syllabus</div>
+          </div>
+        </div>
+        <p style="font-size:.88rem;line-height:1.9;color:rgba(255,255,255,.6);">
+          Providing quality English medium education from LKG to 10th Standard, nurturing young minds to become responsible citizens of Karnataka and India.
+        </p>
+        <div class="mt-3">
+          <a href="tel:9448650834" class="btn btn-gold btn-sm me-2" style="border-radius:20px;">
+            <i class="bi bi-telephone me-1"></i>Call Now
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="#hero"><i class="bi bi-chevron-right me-1" style="font-size:.7rem;"></i>Home</a></li>
+          <li><a href="#about"><i class="bi bi-chevron-right me-1" style="font-size:.7rem;"></i>About Us</a></li>
+          <li><a href="#academics"><i class="bi bi-chevron-right me-1" style="font-size:.7rem;"></i>Academics</a></li>
+          <li><a href="#facilities"><i class="bi bi-chevron-right me-1" style="font-size:.7rem;"></i>Facilities</a></li>
+          <li><a href="#gallery"><i class="bi bi-chevron-right me-1" style="font-size:.7rem;"></i>Gallery</a></li>
+          <li><a href="#contact"><i class="bi bi-chevron-right me-1" style="font-size:.7rem;"></i>Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <h6>Classes Offered</h6>
+        <ul>
+          <li><a href="#academics">Pre-Primary (LKG – UKG)</a></li>
+          <li><a href="#academics">Primary (1st – 5th Std)</a></li>
+          <li><a href="#academics">Middle School (6th – 8th Std)</a></li>
+          <li><a href="#academics">High School (9th – 10th Std)</a></li>
+        </ul>
+        <div class="mt-3" style="background:rgba(201,151,59,.1);border:1px solid rgba(201,151,59,.25);border-radius:8px;padding:.75rem 1rem;">
+          <div style="font-size:.72rem;color:var(--gold);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;">Syllabus</div>
+          <div style="color:var(--white);font-size:.88rem;">Karnataka State Board (KSEEB)</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <h6>Contact Details</h6>
+        <ul>
+          <li style="display:flex;gap:8px;align-items:flex-start;margin-bottom:.75rem;">
+            <i class="bi bi-geo-alt-fill" style="color:var(--gold);margin-top:2px;flex-shrink:0;"></i>
+            <span style="font-size:.85rem;color:rgba(255,255,255,.6);">Dudhani Road, Afzalpur, Afzalpur Rural, Karnataka 585301</span>
+          </li>
+          <li style="display:flex;gap:8px;align-items:center;margin-bottom:.5rem;">
+            <i class="bi bi-telephone-fill" style="color:var(--gold);flex-shrink:0;"></i>
+            <a href="tel:9448650834" style="font-size:.88rem;">9448650834</a>
+          </li>
+          <li style="display:flex;gap:8px;align-items:center;margin-bottom:.5rem;">
+            <i class="bi bi-telephone-fill" style="color:var(--gold);flex-shrink:0;"></i>
+            <a href="tel:9886009301" style="font-size:.88rem;">98860 09301</a>
+          </li>
+          <li style="display:flex;gap:8px;align-items:center;">
+            <i class="bi bi-clock-fill" style="color:var(--gold);flex-shrink:0;"></i>
+            <span style="font-size:.85rem;color:rgba(255,255,255,.6);">Mon–Sat: 9 AM – 5 PM</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>© 2026 <a href="#hero">Vidyaniketan Education Trust</a>. All rights reserved.</div>
+      <div>Karnataka State Syllabus · Afzalpur, Kalaburagi</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/jquery@3.7.1/dist/jquery.min.js"></script>
+
+<script>
+$(function () {
+
+  // ── Navbar scroll shadow ──
+  $(window).on('scroll', function () {
+    if ($(this).scrollTop() > 60) {
+      $('#mainNav').addClass('scrolled');
+    } else {
+      $('#mainNav').removeClass('scrolled');
+    }
+  });
+
+  // ── Active nav link on scroll ──
+  const sections = ['hero','about','academics','facilities','gallery','contact'];
+  $(window).on('scroll', function () {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 100) current = id;
+    });
+    $('.nav-link').removeClass('active');
+    if (current) $(`.nav-link[href="#${current}"]`).addClass('active');
+  });
+
+  // ── Smooth close nav on mobile link click ──
+  $('.nav-link').on('click', function () {
+    if ($('.navbar-collapse').hasClass('show')) {
+      $('.navbar-toggler').trigger('click');
+    }
+  });
+
+  // ── Intersection Observer for fade-up ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Gallery lightbox ──
+  $('.gallery-item').on('click', function () {
+    const src = $(this).data('src');
+    $('#lbImg').attr('src', src);
+    $('#lightbox').addClass('open');
+    $('body').css('overflow', 'hidden');
+  });
+
+  $('#lbClose, #lightbox').on('click', function (e) {
+    if (e.target === this) {
+      $('#lightbox').removeClass('open');
+      $('body').css('overflow', '');
+    }
+  });
+
+  $(document).on('keydown', function (e) {
+    if (e.key === 'Escape') {
+      $('#lightbox').removeClass('open');
+      $('body').css('overflow', '');
+    }
+  });
+
+});
+</script>
+</body>
+</html>
